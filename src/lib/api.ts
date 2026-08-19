@@ -592,10 +592,13 @@ export const api = {
   // Virtual Try-On Engine
   tryOn: {
     extractFromUrl: async (url: string): Promise<ExtractedProduct> => {
+      const match = url.match(/https?:\/\/[^\s<>"]+/i);
+      const cleanUrl = match ? match[0] : url.trim();
+
       let clientExtracted: Partial<ExtractedProduct> | null = null;
       try {
         // Run client-side extraction in parallel for instant response
-        clientExtracted = await fetchClientSideProduct(url);
+        clientExtracted = await fetchClientSideProduct(cleanUrl);
       } catch {}
 
       try {
@@ -607,7 +610,7 @@ export const api = {
           data?: Record<string, unknown>;
         }>("/api/v1/product/from-url", {
           method: "POST",
-          body: JSON.stringify({ url }),
+          body: JSON.stringify({ url: cleanUrl }),
         });
 
         const prod = res.product || res.data || {};

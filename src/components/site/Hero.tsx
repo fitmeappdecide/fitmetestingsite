@@ -7,6 +7,14 @@ import garmentTrousers from "@/assets/garment-trousers.jpg";
 
 /* ─── Shared Sub-components ─── */
 
+const scrollToDemo = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const el = document.getElementById("demo");
+  if (el) {
+    e.preventDefault();
+    el.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
 function ProductCard({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="flex-1 rounded-[22px] bg-[#F9F7F4] shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-black/[0.03] flex items-center justify-center overflow-hidden p-1">
@@ -62,6 +70,7 @@ function DesktopHero() {
         <div className="mt-8 flex flex-col items-center gap-2.5">
           <a
             href="#demo"
+            onClick={scrollToDemo}
             className="group inline-flex items-center gap-2.5 rounded-full bg-primary px-8 py-3.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:brightness-110 active:scale-[0.98]"
           >
             <span>Get started for free</span>
@@ -104,6 +113,7 @@ function MobileHero() {
         <div className="mt-5 flex flex-col items-center gap-2">
           <a
             href="#demo"
+            onClick={scrollToDemo}
             className="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-xs sm:text-sm font-medium text-primary-foreground shadow-md hover:brightness-110 active:scale-[0.98]"
           >
             <span>Get started for free</span>
