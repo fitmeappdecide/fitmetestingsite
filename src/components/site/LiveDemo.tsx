@@ -12,7 +12,13 @@ import {
   SlidersHorizontal,
   Sparkle,
 } from "lucide-react";
-import { api, fileToBase64, upgradeToHdImageUrl, type ExtractedProduct } from "@/lib/api";
+import {
+  api,
+  fileToBase64,
+  upgradeToHdImageUrl,
+  parseFashionUrl,
+  type ExtractedProduct,
+} from "@/lib/api";
 import modelImage from "@/assets/model.png";
 import garmentShirt from "@/assets/garment-shirt.jpg";
 import person1 from "@/assets/person-1.png";
@@ -148,17 +154,9 @@ export function LiveDemo() {
       setProduct(p);
       setStage("extracted");
     } catch (err) {
-      console.warn("Extraction fallback:", err);
-      const activePreset = matchedPreset || selectedPreset;
-      setProduct({
-        platform: activePreset.brand,
-        brand: activePreset.brand,
-        title: activePreset.title,
-        price: activePreset.price,
-        images: [activePreset.garmentImage],
-        color: activePreset.color,
-        garmentType: activePreset.category,
-      });
+      console.warn("Extraction fallback to smart parser:", err);
+      const parsed = parseFashionUrl(urlToUse);
+      setProduct(parsed);
       setStage("extracted");
     }
   };

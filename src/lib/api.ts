@@ -70,6 +70,8 @@ async function apiRequest<T>(endpoint: string, init?: RequestInit): Promise<T> {
     "Content-Type": "application/json",
     "x-brand-api-key": getApiKey(),
     "X-Brand-API-Key": getApiKey(),
+    "Bypass-Tunnel-Reminder": "true",
+    "bypass-tunnel-reminder": "true",
     ...(init?.headers as Record<string, string>),
   };
 
@@ -713,8 +715,11 @@ export const api = {
         headers: {
           "X-Brand-API-Key": getApiKey(),
           "x-brand-api-key": getApiKey(),
+          "Bypass-Tunnel-Reminder": "true",
+          "bypass-tunnel-reminder": "true",
           "X-Consent-Given": "true",
         },
+
         body: formData,
       });
 
