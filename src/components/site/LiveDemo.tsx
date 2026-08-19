@@ -245,20 +245,37 @@ export function LiveDemo() {
         : s.key === stage,
   );
 
-  const rawGarmentImage =
-    (product?.images && product.images.length > 0 && product.images[0]) ||
-    selectedPreset.garmentImage ||
-    garmentShirt;
-
-  const activeGarmentImage = upgradeToHdImageUrl(rawGarmentImage);
-
   const isEthnic =
     product?.garmentType === "ethnic" ||
     (product?.title &&
       (product.title.toLowerCase().includes("kurta") ||
         product.title.toLowerCase().includes("kurti") ||
         product.title.toLowerCase().includes("saree") ||
-        product.title.toLowerCase().includes("palazzo")));
+        product.title.toLowerCase().includes("palazzo") ||
+        product.title.toLowerCase().includes("anarkali") ||
+        product.title.toLowerCase().includes("dupatta") ||
+        product.title.toLowerCase().includes("ethnic")));
+
+  const isDress =
+    product?.garmentType === "dress" ||
+    (product?.title &&
+      (product.title.toLowerCase().includes("dress") ||
+        product.title.toLowerCase().includes("gown") ||
+        product.title.toLowerCase().includes("maxi") ||
+        product.title.toLowerCase().includes("midi")));
+
+  const defaultCategorySilhouette = isEthnic
+    ? scanKurta
+    : isDress
+      ? productDress
+      : selectedPreset.garmentImage;
+
+  const rawGarmentImage =
+    (product?.images && product.images.length > 0 && product.images[0]) ||
+    defaultCategorySilhouette ||
+    garmentShirt;
+
+  const activeGarmentImage = upgradeToHdImageUrl(rawGarmentImage);
 
   const activeResultImage =
     generatedResultUrl ||

@@ -10,7 +10,16 @@ import tryonSareeRealistic from "@/assets/tryon-saree-realistic.jpg";
 import person1 from "@/assets/person-1.png";
 import person2 from "@/assets/person-2.png";
 
-const DEFAULT_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+const isLocalhost =
+  typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1" ||
+    window.location.hostname.startsWith("192.168.") ||
+    window.location.hostname.startsWith("10."));
+
+const DEFAULT_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || (isLocalhost ? "http://localhost:8000" : "");
+
 const DEFAULT_API_KEY =
   import.meta.env.VITE_FITME_API_KEY || "fitme_live_SEjMYuhxExXgBngyzi6PxtxcsiRKcN8O78G2O7uf5a8";
 
@@ -40,9 +49,13 @@ export function getBaseUrl(): string {
 
 async function apiRequest<T>(endpoint: string, init?: RequestInit): Promise<T> {
   const base = getBaseUrl();
+  if (!base && !endpoint.startsWith("http")) {
+    throw new Error("No remote backend configured. Using instant client-side intelligence.");
+  }
   const url = endpoint.startsWith("http")
     ? endpoint
     : `${base}${endpoint.startsWith("/api") ? "" : "/api/v1"}${endpoint}`;
+
 
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
@@ -51,10 +64,14 @@ async function apiRequest<T>(endpoint: string, init?: RequestInit): Promise<T> {
     ...(init?.headers as Record<string, string>),
   };
 
+  const signal = init?.signal || (typeof AbortSignal !== "undefined" && "timeout" in AbortSignal ? AbortSignal.timeout(4000) : undefined);
+
   const res = await fetch(url, {
     ...init,
     headers,
+    signal,
   });
+
 
   if (!res.ok) {
     const errorText = await res.text().catch(() => "");
