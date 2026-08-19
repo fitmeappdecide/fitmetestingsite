@@ -181,8 +181,8 @@ export function ScanCompare() {
   const maxSavings = highestPrice - lowestPrice;
 
   return (
-    <section id="compare" className="relative py-14 sm:py-16 md:py-22">
-      <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
+    <section id="compare" className="relative py-12 sm:py-16 md:py-22">
+      <div className="mx-auto max-w-[1200px] px-3.5 sm:px-6">
         {/* Hidden File Input */}
         <input
           ref={fileInputRef}
@@ -193,25 +193,25 @@ export function ScanCompare() {
         />
 
         {/* Section Header */}
-        <div className="grid gap-8 sm:gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div className="grid gap-6 sm:gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7 }}
           >
-            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3.5 py-1 text-[11px] font-semibold text-primary mb-3">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-[10.5px] font-semibold text-primary mb-2.5 sm:mb-3">
               <Sparkles className="h-3 w-3" />
               <span>LIVE PRICE COMPARISON ENGINE</span>
             </div>
 
-            <h2 className="font-serif text-[clamp(2rem,6vw,3.6rem)] font-light leading-tight tracking-tight text-foreground text-balance">
+            <h2 className="font-serif text-[clamp(1.85rem,5.5vw,3.6rem)] font-light leading-tight tracking-tight text-foreground text-balance">
               Find it anywhere.
               <br />
               <em className="italic text-primary font-normal">Compare & save.</em>
             </h2>
 
-            <p className="mt-3 sm:mt-4 max-w-md text-foreground/65 leading-relaxed text-xs sm:text-sm md:text-[15px]">
+            <p className="mt-2.5 sm:mt-4 max-w-md text-foreground/65 leading-relaxed text-xs sm:text-sm md:text-[15px]">
               Found a look on Pinterest, Instagram, or in a showroom? Upload a single picture. FitMe
               instantly locates identical items across fashion platforms, displays side-by-side
               prices, and renders how it fits on you.
@@ -224,25 +224,25 @@ export function ScanCompare() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="rounded-[22px] sm:rounded-[28px] border border-foreground/10 bg-card p-4 sm:p-6 shadow-2xl md:p-7"
+            className="rounded-[20px] sm:rounded-[28px] border border-foreground/10 bg-card p-3.5 sm:p-6 shadow-xl md:p-7"
           >
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
               {/* Left: Scanned Image Preview */}
-              <div className="relative overflow-hidden rounded-2xl border border-foreground/10 bg-background shadow-sm flex flex-col justify-between">
-                <div className="relative h-38 sm:h-44 w-full overflow-hidden bg-[#F4EDE7]/50 flex items-center justify-center">
+              <div className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-foreground/10 bg-background shadow-sm flex flex-col justify-between">
+                <div className="relative h-36 sm:h-44 w-full overflow-hidden bg-[#F4EDE7]/50 flex items-center justify-center">
                   <img
                     src={uploadedImage}
                     alt="Scanned garment"
                     className="h-full w-full object-cover"
                   />
                   {isScanning && (
-                    <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex flex-col items-center justify-center p-4 text-center text-white animate-in fade-in duration-200">
-                      <Loader2 className="h-7 w-7 animate-spin text-primary mb-2" />
-                      <p className="text-xs font-semibold">{scanStage}</p>
+                    <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex flex-col items-center justify-center p-3 text-center text-white animate-in fade-in duration-200">
+                      <Loader2 className="h-6 w-6 animate-spin text-primary mb-1.5" />
+                      <p className="text-[11px] sm:text-xs font-semibold">{scanStage}</p>
                     </div>
                   )}
                 </div>
-                <div className="flex items-center justify-center gap-2 p-2.5 text-xs font-medium text-foreground/70 bg-card">
+                <div className="flex items-center justify-center gap-1.5 p-2 sm:p-2.5 text-[11px] sm:text-xs font-medium text-foreground/70 bg-card border-t border-foreground/5">
                   <CheckCircle2 className="h-3.5 w-3.5 text-primary shrink-0" />
                   <span className="truncate">
                     {isScanning ? scanStage : "Visual Scan Match Ready"}
@@ -253,20 +253,22 @@ export function ScanCompare() {
               {/* Right: Upload Box with Active Engine */}
               <div
                 onClick={() => fileInputRef.current?.click()}
-                className="flex flex-col items-center justify-center gap-2.5 rounded-2xl border-2 border-dashed border-primary/30 bg-primary/5 p-5 text-center cursor-pointer transition hover:border-primary hover:bg-primary/10 active:scale-[0.99]"
+                className="flex flex-col items-center justify-center gap-2 rounded-xl sm:rounded-2xl border-2 border-dashed border-primary/30 bg-primary/5 p-4 sm:p-5 text-center cursor-pointer transition hover:border-primary hover:bg-primary/10 active:scale-[0.99]"
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/15 text-primary shadow-sm">
-                  <Upload className="h-5 w-5" />
+                <span className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-primary/15 text-primary shadow-sm">
+                  <Upload className="h-4 w-4 sm:h-5 sm:w-5" />
                 </span>
                 <div>
-                  <p className="text-sm font-semibold text-foreground">Upload Any Outfit Photo</p>
-                  <p className="text-[11px] text-foreground/50 mt-0.5">
-                    JPEG, PNG, WebP · Real-time AI match
+                  <p className="text-xs sm:text-sm font-semibold text-foreground">
+                    Upload Outfit Photo
+                  </p>
+                  <p className="text-[10px] sm:text-[11px] text-foreground/50 mt-0.5">
+                    JPEG, PNG, WebP · Live AI match
                   </p>
                 </div>
                 <button
                   type="button"
-                  className="rounded-full bg-primary px-5 py-1.5 text-xs font-medium text-primary-foreground transition hover:brightness-110 shadow-sm"
+                  className="rounded-full bg-primary px-4 py-1.5 text-[11px] sm:text-xs font-medium text-primary-foreground transition hover:brightness-110 shadow-sm mt-0.5"
                 >
                   Select Photo to Compare
                 </button>
@@ -281,21 +283,21 @@ export function ScanCompare() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8 }}
-          className="mt-8 grid gap-5 lg:grid-cols-[1.55fr_1fr]"
+          className="mt-6 sm:mt-8 grid gap-4 sm:gap-5 lg:grid-cols-[1.55fr_1fr]"
         >
           {/* Matches List */}
-          <div className="rounded-[22px] sm:rounded-[28px] border border-foreground/10 bg-card p-4 sm:p-6 shadow-xl md:p-7">
-            <div className="flex items-center justify-between border-b border-foreground/8 pb-3.5">
-              <div>
-                <h3 className="font-serif text-xl md:text-2xl font-medium text-foreground">
+          <div className="rounded-[20px] sm:rounded-[28px] border border-foreground/10 bg-card p-3.5 sm:p-6 shadow-xl md:p-7 min-w-0">
+            <div className="flex items-center justify-between gap-2 border-b border-foreground/8 pb-3">
+              <div className="min-w-0 flex-1">
+                <h3 className="font-serif text-lg sm:text-xl md:text-2xl font-medium text-foreground truncate">
                   Live Catalog Deals
                 </h3>
-                <p className="text-xs text-foreground/55">
-                  Scanned across Amazon, Myntra, Ajio, Nykaa & global stores
+                <p className="text-[10.5px] sm:text-xs text-foreground/55 truncate">
+                  Scanned across Amazon, Myntra, Ajio & Nykaa
                 </p>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+              <div className="flex items-center gap-1.5 shrink-0">
+                <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] sm:text-xs font-semibold text-primary whitespace-nowrap">
                   {matches.length} Verified Deals
                 </span>
                 {uploadedImage !== kurta && (
@@ -310,7 +312,7 @@ export function ScanCompare() {
               </div>
             </div>
 
-            <div className="mt-4 space-y-2.5 max-h-[380px] overflow-y-auto pr-1">
+            <div className="mt-3.5 space-y-2 sm:space-y-2.5 max-h-[380px] overflow-y-auto pr-0.5">
               <AnimatePresence>
                 {matches.map((r, idx) => (
                   <motion.div
@@ -318,40 +320,40 @@ export function ScanCompare() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: idx * 0.05 }}
-                    className="flex items-center gap-3 sm:gap-3.5 rounded-2xl border border-foreground/8 bg-background/80 p-2.5 sm:p-3 transition hover:border-primary/40 hover:bg-background"
+                    className="flex items-center gap-2.5 sm:gap-3.5 rounded-xl sm:rounded-2xl border border-foreground/8 bg-background/90 p-2 sm:p-3 transition hover:border-primary/40 hover:bg-background min-w-0"
                   >
                     {/* Thumbnail */}
-                    <div className="relative h-16 w-14 shrink-0 overflow-hidden rounded-xl border bg-card">
+                    <div className="relative h-14 w-12 sm:h-16 sm:w-14 shrink-0 overflow-hidden rounded-lg sm:rounded-xl border bg-card">
                       <img
                         src={r.image_url || uploadedImage}
                         alt={r.title}
                         className="h-full w-full object-cover"
                       />
-                      <span className="absolute bottom-0.5 left-0.5 rounded-full bg-background/90 px-1 py-0.2 text-[8px] font-semibold text-primary backdrop-blur">
-                        {r.confidence ? `${Math.round(r.confidence)}% Match` : "98% Match"}
+                      <span className="absolute bottom-0.5 left-0.5 rounded-full bg-background/90 px-1 py-0.2 text-[7.5px] sm:text-[8px] font-semibold text-primary backdrop-blur whitespace-nowrap">
+                        {r.confidence ? `${Math.round(r.confidence)}% Match` : "98%"}
                       </span>
                     </div>
 
                     {/* Meta */}
-                    <div className="min-w-0 flex-1">
-                      <span className="inline-block rounded-full bg-primary/10 px-2 py-0.5 text-[9px] font-semibold tracking-wider text-primary uppercase">
+                    <div className="min-w-0 flex-1 pr-1">
+                      <span className="inline-block rounded-full bg-primary/10 px-1.5 py-0.2 text-[8.5px] sm:text-[9px] font-semibold tracking-wider text-primary uppercase truncate max-w-full">
                         {r.retailer || "Verified Store"}
                       </span>
-                      <p className="truncate text-xs sm:text-sm font-medium text-foreground mt-0.5">
+                      <p className="text-[11.5px] sm:text-sm font-medium text-foreground line-clamp-1 mt-0.5 leading-tight">
                         {r.title}
                       </p>
-                      <p className="text-[11px] text-foreground/50 truncate">
+                      <p className="text-[10px] sm:text-[11px] text-foreground/50 truncate mt-0.5">
                         ★ {r.rating || "4.7"} · In Stock · Fast Delivery
                       </p>
                     </div>
 
                     {/* Price & Action */}
-                    <div className="text-right shrink-0">
-                      <p className="text-sm sm:text-base font-serif font-semibold text-foreground">
+                    <div className="text-right shrink-0 min-w-[70px] sm:min-w-[85px] flex flex-col items-end justify-center">
+                      <p className="text-xs sm:text-base font-serif font-bold text-foreground leading-tight">
                         {r.price != null ? `₹${r.price.toLocaleString()}` : "₹1,199"}
                       </p>
                       {r.original_price != null && (
-                        <p className="text-[11px] text-foreground/40 line-through">
+                        <p className="text-[9.5px] sm:text-[11px] text-foreground/40 line-through leading-tight">
                           ₹{r.original_price.toLocaleString()}
                         </p>
                       )}
@@ -359,7 +361,7 @@ export function ScanCompare() {
                         href={r.url || "#"}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:underline mt-0.5"
+                        className="inline-flex items-center gap-0.5 rounded-full bg-primary/10 px-2 py-0.5 text-[9.5px] sm:text-[11px] font-semibold text-primary hover:bg-primary hover:text-primary-foreground transition mt-1 whitespace-nowrap"
                       >
                         <span>View Deal</span>
                         <ExternalLink className="h-2.5 w-2.5" />
@@ -372,38 +374,38 @@ export function ScanCompare() {
           </div>
 
           {/* Pricing Summary Widget */}
-          <div className="flex flex-col justify-between rounded-[22px] sm:rounded-[28px] border border-foreground/10 bg-card p-5 shadow-xl md:p-7">
+          <div className="flex flex-col justify-between rounded-[20px] sm:rounded-[28px] border border-foreground/10 bg-card p-4 sm:p-6 shadow-xl md:p-7 min-w-0">
             <div>
-              <div className="flex items-center justify-between border-b border-foreground/8 pb-3.5">
-                <h3 className="font-serif text-xl font-medium text-foreground">
+              <div className="flex items-center justify-between gap-2 border-b border-foreground/8 pb-3">
+                <h3 className="font-serif text-lg sm:text-xl font-medium text-foreground">
                   Price Intelligence
                 </h3>
-                <span className="flex items-center gap-1 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-600">
+                <span className="flex items-center gap-1 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[10.5px] sm:text-[11px] font-semibold text-emerald-600 whitespace-nowrap">
                   <TrendingDown className="h-3 w-3" /> Save ₹{maxSavings > 0 ? maxSavings : 1100}
                 </span>
               </div>
 
-              <div className="mt-4 space-y-3">
+              <div className="mt-3.5 space-y-2 sm:space-y-2.5">
                 {matches.slice(0, 4).map((p, idx) => (
                   <div
                     key={p.retailer + idx}
-                    className={`flex items-center justify-between rounded-xl px-3.5 py-2.5 text-xs transition ${
+                    className={`flex items-center justify-between gap-2 rounded-xl px-3 sm:px-3.5 py-2 sm:py-2.5 text-xs transition ${
                       idx === 0
                         ? "bg-primary/10 font-medium text-primary ring-1 ring-primary/20"
                         : "bg-background/60 text-foreground/75"
                     }`}
                   >
-                    <div className="flex items-center gap-2 truncate">
+                    <div className="flex items-center gap-2 min-w-0 truncate">
                       <ShoppingBag className="h-3.5 w-3.5 opacity-70 shrink-0" />
-                      <span className="truncate">{p.retailer}</span>
+                      <span className="truncate text-[11px] sm:text-xs">{p.retailer}</span>
                       {idx === 0 && (
-                        <span className="rounded bg-primary px-1.5 py-0.2 text-[8px] font-bold text-primary-foreground uppercase">
+                        <span className="rounded bg-primary px-1.5 py-0.2 text-[7.5px] sm:text-[8px] font-bold text-primary-foreground uppercase shrink-0">
                           BEST
                         </span>
                       )}
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
-                      <span className="font-serif font-semibold">
+                      <span className="font-serif font-semibold text-xs sm:text-sm">
                         {p.price != null ? `₹${p.price.toLocaleString()}` : "₹1,199"}
                       </span>
                     </div>
@@ -412,11 +414,11 @@ export function ScanCompare() {
               </div>
             </div>
 
-            <div className="mt-6 rounded-2xl bg-foreground p-4 text-background">
-              <p className="text-[10px] font-semibold tracking-wider text-primary uppercase">
+            <div className="mt-5 sm:mt-6 rounded-xl sm:rounded-2xl bg-foreground p-3.5 sm:p-4 text-background">
+              <p className="text-[9.5px] sm:text-[10px] font-semibold tracking-wider text-primary uppercase">
                 FitMe Engine Protection
               </p>
-              <p className="mt-1 text-xs leading-relaxed text-background/80">
+              <p className="mt-1 text-[11px] sm:text-xs leading-relaxed text-background/80">
                 Visual price comparison crawls live inventories before you buy to guarantee you
                 never overpay.
               </p>
