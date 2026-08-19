@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Luxury Warm Ivory Gradient Background -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCFAF7"/>
+      <stop offset="100%" stop-color="#F2ECE4"/>
+    </linearGradient>
+
+    <!-- Subtle Luxury Border -->
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8DFD5"/>
+      <stop offset="100%" stop-color="#D4C4B5"/>
+    </linearGradient>
+
+    <!-- Deep Espresso Tone for Serif 'F' -->
+    <linearGradient id="serifTone" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141210"/>
+      <stop offset="100%" stop-color="#241E1A"/>
+    </linearGradient>
+
+    <!-- Terracotta Accent Dot -->
+    <radialGradient id="terracottaDot" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#C86D4B"/>
+      <stop offset="100%" stop-color="#A35334"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Premium Rounded Squircle Container with High Visibility in Dark & Light browser tabs -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="14"/>
+
+  <!-- High-Precision Serif 'F' (Matching FitMe Brandmark) -->
+  <g fill="url(#serifTone)">
+    <!-- Top Left & Right Serif Head -->
+    <path d="M 148 116 L 368 116 C 378 116 384 122 384 132 C 384 148 376 178 372 192 L 350 192 C 352 174 350 156 338 152 C 328 148 304 148 274 148 L 246 148 L 246 244 L 298 244 C 322 244 332 238 336 222 L 352 222 L 352 292 L 336 292 C 332 276 322 270 298 270 L 246 270 L 246 376 C 246 406 250 414 286 418 L 286 432 L 148 432 L 148 418 C 184 414 188 406 188 376 L 188 172 C 188 142 184 134 148 130 Z" />
+  </g>
+
+  <!-- Luxury Terracotta Brandmark Gem Accent -->
+  <circle cx="376" cy="136" r="18" fill="url(#terracottaDot)" />
+</svg>
