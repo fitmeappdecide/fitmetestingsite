@@ -43,15 +43,13 @@ export function setApiKey(key: string): void {
   }
 }
 
+const PRODUCTION_TUNNEL_URL = "https://tax-damaged-fur-sunglasses.trycloudflare.com";
+
 export function getBaseUrl(): string {
   let base = (import.meta.env.VITE_API_BASE_URL || "").trim();
   if (typeof window !== "undefined") {
-    // When running in production (e.g. Cloudflare Pages or custom domain), never call localhost to prevent Chrome permission popups
-    if (!isLocalhost && (base.includes("localhost") || base.includes("127.0.0.1"))) {
-      base = "";
-    }
-    if (!base && isLocalhost) {
-      base = "http://localhost:8000";
+    if (!base || base.includes("localhost") || base.includes("127.0.0.1")) {
+      base = isLocalhost ? "http://localhost:8000" : PRODUCTION_TUNNEL_URL;
     }
   }
   return base.replace(/\/+$/, "");
