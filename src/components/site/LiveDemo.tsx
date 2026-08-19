@@ -284,7 +284,7 @@ export function LiveDemo() {
   const activeOriginalPortrait = userPhoto || selectedPreset.modelImage;
 
   return (
-    <section id="demo" className="relative py-16 md:py-24">
+    <section id="demo" className="relative py-16 md:py-24 scroll-mt-16 sm:scroll-mt-20">
       {/* Background atmosphere */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute left-1/2 top-1/4 h-[550px] w-[750px] -translate-x-1/2 rounded-full bg-primary/10 opacity-70 blur-3xl" />

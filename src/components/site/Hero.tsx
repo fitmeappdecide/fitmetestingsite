@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import modelImage from "@/assets/model.png";
 import garmentShirt from "@/assets/garment-shirt.jpg";
@@ -61,13 +60,13 @@ function DesktopHero() {
 
         {/* CTA */}
         <div className="mt-8 flex flex-col items-center gap-2.5">
-          <Link
-            to="/signup"
+          <a
+            href="#demo"
             className="group inline-flex items-center gap-2.5 rounded-full bg-primary px-8 py-3.5 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:brightness-110 active:scale-[0.98]"
           >
             <span>Get started for free</span>
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
+          </a>
           <span className="text-xs text-foreground/45">No credit card required</span>
         </div>
       </motion.div>
@@ -103,13 +102,13 @@ function MobileHero() {
           Realistic AI try‑on that helps you discover outfits that suit you best.
         </p>
         <div className="mt-5 flex flex-col items-center gap-2">
-          <Link
-            to="/signup"
+          <a
+            href="#demo"
             className="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-xs sm:text-sm font-medium text-primary-foreground shadow-md hover:brightness-110 active:scale-[0.98]"
           >
             <span>Get started for free</span>
             <ArrowRight className="h-4 w-4" />
-          </Link>
+          </a>
           <span className="text-[11px] text-foreground/45">No credit card required</span>
         </div>
       </div>
