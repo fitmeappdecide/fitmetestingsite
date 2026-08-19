@@ -80,12 +80,13 @@ export function ScanCompare() {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    let base64 = kurta;
     try {
       setError(null);
       setIsScanning(true);
       setScanStage("Processing & Enhancing Outfit Image...");
 
-      const base64 = await fileToBase64(file);
+      base64 = await fileToBase64(file);
       setUploadedImage(base64);
 
       setScanStage("Connecting to FitMe Visual Neural Index...");
@@ -162,7 +163,6 @@ export function ScanCompare() {
         setIsScanning(false);
       }, 1000);
     }
-
   };
 
   const handleReset = () => {

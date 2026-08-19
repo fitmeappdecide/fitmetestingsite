@@ -44,7 +44,17 @@ export function setApiKey(key: string): void {
 }
 
 export function getBaseUrl(): string {
-  return DEFAULT_BASE_URL.replace(/\/+$/, "");
+  let base = (import.meta.env.VITE_API_BASE_URL || "").trim();
+  if (typeof window !== "undefined") {
+    // When running in production (e.g. Cloudflare Pages or custom domain), never call localhost to prevent Chrome permission popups
+    if (!isLocalhost && (base.includes("localhost") || base.includes("127.0.0.1"))) {
+      base = "";
+    }
+    if (!base && isLocalhost) {
+      base = "http://localhost:8000";
+    }
+  }
+  return base.replace(/\/+$/, "");
 }
 
 async function apiRequest<T>(endpoint: string, init?: RequestInit): Promise<T> {
@@ -56,7 +66,6 @@ async function apiRequest<T>(endpoint: string, init?: RequestInit): Promise<T> {
     ? endpoint
     : `${base}${endpoint.startsWith("/api") ? "" : "/api/v1"}${endpoint}`;
 
-
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
     "x-brand-api-key": getApiKey(),
@@ -64,14 +73,17 @@ async function apiRequest<T>(endpoint: string, init?: RequestInit): Promise<T> {
     ...(init?.headers as Record<string, string>),
   };
 
-  const signal = init?.signal || (typeof AbortSignal !== "undefined" && "timeout" in AbortSignal ? AbortSignal.timeout(4000) : undefined);
+  const signal =
+    init?.signal ||
+    (typeof AbortSignal !== "undefined" && "timeout" in AbortSignal
+      ? AbortSignal.timeout(4000)
+      : undefined);
 
   const res = await fetch(url, {
     ...init,
     headers,
     signal,
   });
-
 
   if (!res.ok) {
     const errorText = await res.text().catch(() => "");

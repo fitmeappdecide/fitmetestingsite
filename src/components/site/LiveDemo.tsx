@@ -19,6 +19,7 @@ import person1 from "@/assets/person-1.png";
 import person2 from "@/assets/person-2.png";
 import tryonSareeRealistic from "@/assets/tryon-saree-realistic.jpg";
 import scanKurta from "@/assets/scan-kurta.jpg";
+import productDress from "@/assets/product-dress.jpg";
 import modelCasual from "@/assets/model-casual.jpg";
 import girl1 from "@/assets/girl-1.png";
 
@@ -426,8 +427,13 @@ export function LiveDemo() {
                           src={activeGarmentImage}
                           alt="Product"
                           onError={(e) => {
-                            if (e.currentTarget.src !== garmentShirt) {
-                              e.currentTarget.src = isEthnic ? scanKurta : garmentShirt;
+                            const fallback = isEthnic
+                              ? scanKurta
+                              : isDress
+                                ? productDress
+                                : garmentShirt;
+                            if (e.currentTarget.src !== fallback) {
+                              e.currentTarget.src = fallback;
                             }
                           }}
                           className="h-full w-full object-contain"
@@ -638,8 +644,13 @@ export function LiveDemo() {
                       src={activeGarmentImage}
                       alt="Extracted Garment"
                       onError={(e) => {
-                        if (e.currentTarget.src !== garmentShirt) {
-                          e.currentTarget.src = isEthnic ? scanKurta : garmentShirt;
+                        const fallback = isEthnic
+                          ? scanKurta
+                          : isDress
+                            ? productDress
+                            : garmentShirt;
+                        if (e.currentTarget.src !== fallback) {
+                          e.currentTarget.src = fallback;
                         }
                       }}
                       className="h-[300px] sm:h-[360px] md:h-[400px] w-full max-w-full object-contain drop-shadow-md transition-all duration-300"
