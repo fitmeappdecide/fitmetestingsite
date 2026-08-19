@@ -78,7 +78,7 @@ async function apiRequest<T>(endpoint: string, init?: RequestInit): Promise<T> {
   const signal =
     init?.signal ||
     (typeof AbortSignal !== "undefined" && "timeout" in AbortSignal
-      ? AbortSignal.timeout(4000)
+      ? AbortSignal.timeout(25000)
       : undefined);
 
   const res = await fetch(url, {
@@ -477,7 +477,7 @@ async function fetchClientSideProduct(urlStr: string): Promise<Partial<Extracted
 
   for (const endpoint of corsEndpoints) {
     try {
-      const resp = await fetch(endpoint, { signal: AbortSignal.timeout(4000) });
+      const resp = await fetch(endpoint, { signal: AbortSignal.timeout(8000) });
       if (!resp.ok) continue;
       const html = await resp.text();
       const doc = new DOMParser().parseFromString(html, "text/html");
