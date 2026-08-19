@@ -195,7 +195,10 @@ export function isBotBlocked(title: string | undefined): boolean {
   return BOT_BLOCK_PATTERNS.some((p) => lower.includes(p)) || lower === "access";
 }
 
-export function parseFashionUrl(urlStr: string): ExtractedProduct {
+export function parseFashionUrl(rawUrl: string): ExtractedProduct {
+  const match = (rawUrl || "").match(/https?:\/\/[^\s<>"]+/i);
+  const urlStr = match ? match[0] : (rawUrl || "").trim();
+
   let host = "Fashion Store";
   let brand = "Fashion Atelier";
   let platform = "Online Store";
@@ -209,8 +212,28 @@ export function parseFashionUrl(urlStr: string): ExtractedProduct {
     const domain = parsed.hostname.toLowerCase();
     const pathname = parsed.pathname;
 
-    // 1. Identify platform
-    if (domain.includes("myntra")) {
+    // 1. Identify platform & boutique brand
+    if (domain.includes("thehouseofrare") || domain.includes("rarerabbit")) {
+      platform = "The House of Rare";
+      brand = "Rare Rabbit";
+      price = "₹2,999";
+    } else if (domain.includes("snitch")) {
+      platform = "Snitch";
+      brand = "Snitch";
+      price = "₹1,499";
+    } else if (domain.includes("urbanic")) {
+      platform = "Urbanic";
+      brand = "Urbanic";
+      price = "₹1,790";
+    } else if (domain.includes("westside")) {
+      platform = "Westside";
+      brand = "Westside";
+      price = "₹1,299";
+    } else if (domain.includes("tatacliq")) {
+      platform = "Tata CLiQ Luxury";
+      brand = "Tata CLiQ";
+      price = "₹2,499";
+    } else if (domain.includes("myntra")) {
       platform = "Myntra";
       brand = "Myntra Premium";
       price = "₹1,499";
