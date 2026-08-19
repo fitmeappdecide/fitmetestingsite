@@ -76,7 +76,7 @@ async function apiRequest<T>(endpoint: string, init?: RequestInit): Promise<T> {
   const signal =
     init?.signal ||
     (typeof AbortSignal !== "undefined" && "timeout" in AbortSignal
-      ? AbortSignal.timeout(25000)
+      ? AbortSignal.timeout(90000)
       : undefined);
 
   const res = await fetch(url, {
